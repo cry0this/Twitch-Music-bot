@@ -69,4 +69,4 @@ class IRCClient:
         message += data[i]
         message += ' '
       return ((nick, message[1:].rstrip()))
-    return (("", ""))
+    return -1

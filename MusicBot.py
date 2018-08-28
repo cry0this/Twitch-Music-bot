@@ -19,7 +19,7 @@ class MusicBot:
     self.ircClient.connect('irc.chat.twitch.tv', 6697)
     self.ircClient.login(self.config["login"], self.config["token"])
     self.ircClient.joinChannel(self.config["channel"])
-    self.ircClient.sendMessage('Python bot is connected. Use !help for help')
+    self.ircClient.sendMessage('MusicBot connected. Use !help')
 
   def isRunning(self):
     return self.running
@@ -28,7 +28,7 @@ class MusicBot:
     data = self.ircClient.recieveData()
     if (data != ""):
       data = self.ircClient.parseData(data)
-      if (data != ("","")):
+      if (data != -1):
         if (data[1][0] == '!' and data[0] != self.config["login"]):
           self.executeCmd(data[1])
     self.player.update()
@@ -200,6 +200,6 @@ class MusicBot:
     return video.title
 
   def exit(self):
-    self.ircClient.sendMessage('PyBot is disconnected.')
+    self.ircClient.sendMessage('MusicBot disconnected.')
     self.ircClient.disconnect()
     self.running = False
