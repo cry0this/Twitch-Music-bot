@@ -11,13 +11,14 @@ class Player:
 
   def update(self):
     if (not self.player.is_playing() and not self.toggled):
-      if (len(self.playlist) > 0 and self.current < len(self.playlist) - 1):
+      if len(self.playlist) > 0 and self.current < len(self.playlist) - 1:
         self.nextSong()
       else:
         self.player.stop()
 
   def play(self):
     self.player.play()
+    time.sleep(3)
     self.toggled = False
 
   def pause(self):
@@ -86,6 +87,7 @@ class Player:
     if (self.toggled):
       self.toggled = False
       self.player.play()
+      time.sleep(3)
     else:
       self.toggled = True
       self.player.pause()
